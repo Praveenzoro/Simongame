@@ -9,13 +9,14 @@ var gamestart = false;
 var level = 0;
 
 
-$(document).keypress(function(){
+$('.start').click(function(){
  if(!gamestart){
      $("#level-title").text("level "+level);
         nextSequence();
         gamestart = true;
         }
         })
+
 
 
    
@@ -33,13 +34,13 @@ $('.btn').click(function(){
         if (gamepattern[gamepat] === userClickedPattern[gamepat]) {
             if (gamepattern.length === userClickedPattern.length) {
                 setTimeout(function() {
-                    nextSequence(); // Assuming nextSequence() is defined elsewhere
+                    nextSequence(); 
                 }, 1000);
             }
         } else {
             var audio = new Audio("./sounds/wrong.mp3");
             audio.play();
-            $("#level-title").text("GAME - OVER "+ " HIGHEST SCORE :"+level);
+          
             $("body").addClass("game-over");
             setTimeout(function() {
                 $("body").removeClass("game-over");
@@ -56,11 +57,12 @@ function nextSequence(){
     var randomChosenColour = buttonColours[randomnum];
      gamepattern.push(randomChosenColour);
 
-$("#"+ randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
-var audio = new Audio("./sounds/"+ randomChosenColour +".mp3");
-audio.play();
    
-   playsound(gamepattern);
+    animatepress(randomChosenColour);
+     
+    playsound(randomChosenColour);
+   
+
 
 }
 
@@ -83,8 +85,9 @@ setTimeout(function() {
 
 
 function startover(){
-    $("#level-title").text("Press any key to start");
+    $("#level-title").text("GAME - OVER "+ " HIGHEST SCORE :"+level);
 level = 0;
 gamestart = false;
 gamepattern = [];
 }
+
