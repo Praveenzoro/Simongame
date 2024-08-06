@@ -91,3 +91,9 @@ gamestart = false;
 gamepattern = [];
 }
 
+
+    $('.infosvg').click(function() {
+        $('#notes').toggle(); 
+    });
+
+
